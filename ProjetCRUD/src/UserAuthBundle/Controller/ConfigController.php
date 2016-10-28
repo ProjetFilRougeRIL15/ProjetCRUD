@@ -2,7 +2,6 @@
 
 namespace UserAuthBundle\Controller;
 
-use UserAuthBundle\Entity\Advert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -20,14 +19,19 @@ class ConfigController extends Controller
 {
     public function indexAction()
     {
-        //$repository = $this->getDoctrine()->getManager()->getRepository('UserAuthBundle:Advert');
-        //$listAdverts = $repository->FindAll();
+        $datas = array();
 
-        return $this->render('UserAuthBundle:Config:index.html.twig');/*,
+        $datas['host'] = $this->container->getParameter('database_host');
+        $datas['port'] = $this->container->getParameter('database_port');
+        $datas['name'] = $this->container->getParameter('database_name');
+        $datas['user'] = $this->container->getParameter('database_user');
+        $datas['password'] = $this->container->getParameter('database_password');
+
+        return $this->render('UserAuthBundle:Config:index.html.twig',
             array(
-                'listAdverts' => $listAdverts,
+                'datas' => $datas
             )
-        );*/
+        );
     }
 }
 ?>
