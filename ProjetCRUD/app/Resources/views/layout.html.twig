@@ -9,8 +9,8 @@
 	<title>Homepage - Semantic</title>
 	<!-- Custom CSS -->
 	{% block stylesheets %}
-	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/UserAuthBundle/Semantic-UI/semantic.min.css') }}" media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/UserAuthBundle/css/CRUD.css') }}" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('UserAuthBundle/Semantic-UI/semantic.min.css') }}" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('UserAuthBundle/css/CRUD.css') }}" media="all" />
 	{% endblock %}
 </head>
 <body>
@@ -23,7 +23,10 @@
 				</a>
 				<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Accueil</a>
 				{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
-					<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Administration</a>
+					<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Annonces</a>
+				{% endif %}
+				{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
+					<a href="{{ path('config_admin_index') }}" class="item menuConfig">Configuration BDD</a>
 				{% endif %}
 				<div class="right item">
 					{% if app.session.get('user') != '' %}
@@ -111,7 +114,7 @@
 	</div>
 	<!-- Latest jQuery form server -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>
-	<script src="{{ asset('bundles/UserAuthBundle/Semantic-UI/semantic.min.js') }}"></script>
+	<script src="{{ asset('UserAuthBundle/Semantic-UI/semantic.min.js') }}"></script>
 	<!-- Page Contents -->
 	<div class="pusher">
 		{% block body %}

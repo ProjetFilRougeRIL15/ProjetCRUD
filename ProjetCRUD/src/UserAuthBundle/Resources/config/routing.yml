@@ -29,3 +29,7 @@ advert_admin_create:
 advert_admin_edit:
     path: /advert/edit/{id}
     defaults: { _controller: UserAuthBundle:Advert:CreateOrEdit }
+
+config_admin_index:
+  path: /config/index
+  defaults: { _controller: UserAuthBundle:Config:index }
