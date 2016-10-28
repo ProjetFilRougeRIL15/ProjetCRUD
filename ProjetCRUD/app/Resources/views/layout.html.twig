@@ -22,7 +22,7 @@
 					<i class="sidebar icon"></i>
 				</a>
 				<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Home</a>
-				{% if app.session.get('user') != '' and app.session.get('user') == 'admin' %}
+				{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
 					<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Administration</a>
 				{% endif %}
 				<div class="right item">
@@ -40,7 +40,7 @@
 	<div class="ui large top fixed hidden menu">
 		<div class="ui container">
 			<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Home</a>
-			{% if app.session.get('user') != '' and app.session.get('user') == 'admin' %}
+			{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
 				<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Administration</a>
 			{% endif %}
 			<div class="right menu">
@@ -62,7 +62,7 @@
 	<!-- Sidebar Menu -->
 	<div class="ui vertical inverted sidebar menu">
 		<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Home</a>
-		{% if app.session.get('user') != '' and app.session.get('user') == 'admin' %}
+		{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
 			<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Administration</a>
 		{% endif %}
 		{% if app.session.get('user') != '' %}
