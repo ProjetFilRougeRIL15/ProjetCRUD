@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	<!-- Site Properties -->
-	<title>Homepage - Semantic</title>
+	<title>LeBonCRUD - Site de petites annonces en ligne</title>
 	<!-- Custom CSS -->
 	{% block stylesheets %}
 	<link rel="stylesheet" type="text/css" href="{{ asset('UserAuthBundle/Semantic-UI/semantic.min.css') }}" media="all" />
@@ -30,10 +30,10 @@
 				{% endif %}
 				<div class="right item">
 					{% if app.session.get('user') != '' %}
-						<a href="{{ path('user_auth_logout') }}" class="ui inverted red button">Log out</a>
+						<a href="{{ path('user_auth_logout') }}" class="ui inverted red button">Se déconnecter</a>
 					{% else %}
-						<a class="ui inverted button Connexion">Log in</a>
-						<a href="{{ path('user_auth_inscription') }}" class="ui inverted button">Sign Up</a>
+						<a class="ui inverted button Connexion">Se connecter</a>
+						<a href="{{ path('user_auth_inscription') }}" class="ui inverted button">S'inscrire</a>
 					{% endif %}
 				</div>
 			</div>
@@ -42,21 +42,21 @@
 	<!-- Following Menu -->
 	<div class="ui large top fixed hidden menu">
 		<div class="ui container">
-			<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Home</a>
+			<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Accueil</a>
 			{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
 				<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Administration</a>
 			{% endif %}
 			<div class="right menu">
 				{% if app.session.get('user') != '' %}
 					<div class="item">
-						<a href="{{ path('user_auth_logout') }}" class="ui red button">Log out</a>
+						<a href="{{ path('user_auth_logout') }}" class="ui red button">Se déconnecter</a>
 					</div>
 				{% else %}
 					<div class="item">
-						<a class="ui button Connexion">Log in</a>
+						<a class="ui button Connexion">Se connecter</a>
 					</div>
 					<div class="item">
-						<a href="{{ path('user_auth_inscription') }}" class="ui button">Sign Up</a>
+						<a href="{{ path('user_auth_inscription') }}" class="ui button">S'inscrire'</a>
 					</div>	
 				{% endif %}
 			</div>
@@ -64,15 +64,15 @@
 	</div>
 	<!-- Sidebar Menu -->
 	<div class="ui vertical inverted sidebar menu">
-		<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Home</a>
+		<a href="{{ path('user_auth_homepage') }}" class="active item menuHome">Accueil</a>
 		{% if app.session.get('user') != '' and app.session.get('userRole') == 'admin' %}
 			<a href="{{ path('advert_admin_index') }}" class="item menuAdmin">Administration</a>
 		{% endif %}
 		{% if app.session.get('user') != '' %}
-			<a href="{{ path('user_auth_logout') }}" class="item red">Log out</a>
+			<a href="{{ path('user_auth_logout') }}" class="item red">Se déconnecter</a>
 		{% else %}
-			<a class="item Connexion menuLogin">Log in</a>
-			<a href="{{ path('user_auth_inscription') }}" class="item menuInscription">Sign Up</a>
+			<a class="item Connexion menuLogin">Se connecter</a>
+			<a href="{{ path('user_auth_inscription') }}" class="item menuInscription">S'inscrire</a>
 		{% endif %}
 	</div>
 	<div style="left: 61%; margin-top: -10%;" class="ui basic modal">
