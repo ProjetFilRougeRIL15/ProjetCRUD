@@ -1,0 +1,31 @@
+user_auth_homepage:
+    path:     /
+    defaults: { _controller: UserAuthBundle:Home:index }
+
+user_auth_inscription:
+    path: /inscription
+    defaults: { _controller: UserAuthBundle:Home:inscription }
+
+user_auth_logout:
+    path: /logout
+    defaults: { _controller: UserAuthBundle:Home:logout }
+
+user_auth_login:
+    path: /login
+    defaults: { _controller: UserAuthBundle:Home:login }
+
+advert_admin_index:
+    path: /advert/index
+    defaults: { _controller: UserAuthBundle:Advert:index }
+
+advert_admin_delete:
+    path: /advert/delete
+    defaults: { _controller: UserAuthBundle:Advert:delete }
+
+advert_admin_create:
+    path: /advert/create/
+    defaults: { _controller: UserAuthBundle:Advert:CreateOrEdit }
+
+advert_admin_edit:
+    path: /advert/edit/{id}
+    defaults: { _controller: UserAuthBundle:Advert:CreateOrEdit }

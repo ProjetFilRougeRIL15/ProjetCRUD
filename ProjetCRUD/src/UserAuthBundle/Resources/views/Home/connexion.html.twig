@@ -1,0 +1,47 @@
+{% extends "::layout.html.twig" %}
+{% block body %}
+	<div style="min-height: auto;" class="ui inverted vertical masthead center aligned segment">
+		<div class="ui container">
+			<div class="ui large secondary inverted pointing menu">
+				<a class="toc item">
+					<i class="sidebar icon"></i>
+				</a>
+				<a class="item">Home</a>
+				<a class="item">Work</a>
+				<a class="item">Company</a>
+				<a class="item">Careers</a>
+				<div class="right item">
+					<a class="ui inverted button active">Log in</a>
+					<a class="ui inverted button">Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui middle aligned center aligned grid">
+	  <div style="margin-top: 100px;">
+	    <h3 class="ui header">Se connecter</h3>
+	    <form class="ui large form">
+	      <div class="ui stacked segment">
+	        <div class="field">
+	          <div class="ui left icon input">
+	            <i class="user icon"></i>
+	            <input name="email" placeholder="E-mail address" type="text">
+	          </div>
+	        </div>
+	        <div class="field">
+	          <div class="ui left icon input">
+	            <i class="lock icon"></i>
+	            <input name="password" placeholder="Password" type="password">
+	          </div>
+	        </div>
+	        <div style="margin-top: 10px;min-width: 200px;margin-left: 22px;" class="positive ui button submit">Login</div>
+	      </div>
+
+	      <div class="ui error message"></div>
+
+	    </form>
+	  </div>
+	</div>
+
+	
+{% endblock %}

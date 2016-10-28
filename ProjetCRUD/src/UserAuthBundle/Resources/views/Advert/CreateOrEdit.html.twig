@@ -1,0 +1,27 @@
+{% extends "::layout.html.twig" %}
+{% block body %}
+<div class="ui segment conteneurMain formulaireAdvert" style="height: 100%;border: none;box-shadow:none;">
+	{{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+		<div class="field">
+	    	<label>Titre :</label>
+	    	{{ form_widget(form.title, {'attr': {'placeholder': 'Titre', 'data-title': 'Titre', 'data-content': 'Indiquer un titre', 'class': 'popin'}}) }} 
+		  </div>
+		  <div class="field">
+	    	<label>Description :</label>
+	    	{{ form_widget(form.description, {'attr': {'placeholder': 'Description', 'data-title': 'Description', 'data-content': 'Indiquer une description', 'class': 'popin'}}) }}
+		  </div>
+		  <div class="field">
+		    <label>Prix :</label>
+		    {{ form_widget(form.price, {'attr': {'placeholder': 'Prix', 'data-title': 'Prix', 'data-content': 'Indiquer un prix', 'class': 'popin'}}) }}
+		  </div>
+		   
+		<a href="{{ path('advert_admin_index') }}">
+			<div class="ui button">Annuler</div>
+		</a>
+		  {{ form_widget(form.save, {'attr': {'class': 'ui button positive'}}) }}
+	{{ form_end(form) }}
+</div>
+<script type="text/javascript">
+	$('.popin').popup();
+</script>
+{% endblock %}

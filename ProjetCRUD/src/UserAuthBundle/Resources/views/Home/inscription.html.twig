@@ -1,0 +1,27 @@
+{% extends "::layout.html.twig" %}
+{% block body %}
+	<div class="ui middle aligned center aligned grid">
+	  <div style="margin-top: 100px;width: 415px;">
+	    <h3 class="ui header">Inscription</h3>
+		{{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+			<div class="field">
+		    	<label>Name *</label>
+		    	{{ form_widget(form.name, {'attr': {'placeholder': 'Name'}}) }}
+			  </div>
+			  <div class="field">
+		    	<label>Email *</label>
+		    	{{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
+			  </div>
+			  <div class="field">
+			    <label>Password *</label>
+			    {{ form_widget(form.password, {'attr': {'placeholder': 'Password'}}) }}
+			  </div>
+			  <div class="field">
+			    <label>Phone Number</label>
+			    {{ form_widget(form.phone, {'attr': {'placeholder': 'phone'}}) }}
+			  </div>
+			  {{ form_widget(form.save, {'attr': {'class': 'ui button positive', 'style': 'float: right; margin-top: 20px; width: 120px;'}}) }}
+		{{ form_end(form) }}
+	  </div>
+	</div>
+{% endblock %}

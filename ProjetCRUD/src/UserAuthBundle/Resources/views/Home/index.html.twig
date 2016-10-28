@@ -1,0 +1,48 @@
+{% extends "::layout.html.twig" %}
+{% block body %}
+	<div class="ui inverted vertical masthead center aligned segment">
+		<div class="ui text container" style="position: absolute; top: -2%; left: 33%;">
+			<h1 style="padding-right:150px;" class="ui inverted header orange">
+				<img class="ui small image" alt="LogoLeBonCrud" src="{{ asset('bundles/UserAuthBundle/Semantic-UI/themes/default/assets/images/LogoLebonCRUDsmall.gif') }}">Le Bon CRUD
+			</h1>
+			<h2>Vendez et achetez ce que vous voulez quand vous voulez</h2>
+			<div class="ui huge orange button">C'est par ici ! <i class="right arrow icon"></i></div>
+		</div>
+	</div>
+	<div class="ui vertical stripe segment">
+		<div class="ui middle aligned stackable grid container">
+			<div class="row">
+				<div class="eight wide column">
+					<h3 class="ui header">Sur le site LeBonCRUD.fr</h3>
+					<p>Sur le site LeBonCRUD.fr, passez des annonces gratuites et sans commission. Vous pouvez consulter des petites annonces de particuliers et de professionnels partout en France, que vous cherchiez des annonces immobilières, des voitures d'occasion, des offres d'emploi, des meubles, du matériel électronique ou tout autre type de produits d'occasion.</p> 
+					<h3 class="ui header">Plein d'annonces !</h3>
+					<p>Trouvez la bonne affaire parmi <b>26 574 317</b> petites annonces sur LeBonCRUD.</p>
+				</div>
+				<div class="six wide right floated column">
+					<img src="{{ asset('bundles/UserAuthBundle/Semantic-UI/themes/default/assets/images/LogoLebonCRUD.png') }}" class="ui large bordered rounded image">
+				</div>
+			</div>
+			<div class="row">
+				<div class="center aligned column">
+					<a class="ui huge button">Aller vérifier par vous-même !</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui vertical stripe quote segment">
+		<div class="ui equal width stackable internally celled grid">
+			<div class="center aligned row">
+				<div class="column">
+					<h3>"Quel site incroyable !"</h3>
+					<p>Voila ce que disent tous nos clients</p>
+				</div>
+				<div class="column">
+					<h3>"Vendre est un but, conclure, une finalité."</h3>
+					<p>
+						<img src="{{ asset('bundles/UserAuthBundle/Semantic-UI/themes/default/assets/images/matt.jpg') }}" class="ui avatar image"> <b>S.THOT</b> PDG du site « Le Bon CRUD »
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

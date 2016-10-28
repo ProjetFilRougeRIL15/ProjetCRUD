@@ -1,0 +1,3 @@
+Créer une Table : php bin/console doctrine:generate:entity
+Afficher le script SQL : php bin/console doctrine:schema:update --dump-sql
+Mettre à jour la table : php bin/console doctrine:schema:update --force

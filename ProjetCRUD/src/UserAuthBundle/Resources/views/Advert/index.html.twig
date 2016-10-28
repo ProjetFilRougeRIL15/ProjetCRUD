@@ -1,0 +1,95 @@
+{% extends "::layout.html.twig" %}
+{% block body %}
+<div class="ui segment conteneurMain" style="height:100%;margin-top: 100px;">
+	<table class="ui compact celled definition table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Titre</th>
+				<th>Description</th>
+				<th>Prix</th>
+			</tr>
+		</thead>
+		<tbody>
+		  	{% for advert in listAdverts %}
+		  	<tr>
+		    	<td class="collapsing">
+					<div class="ui fitted editZone">
+						<i style="cursor: pointer;" class="remove icon red large popin" data-title="Suppression" data-content="Cliquez pour supprimer cettte annonce" data-idadvert="{{ advert.id }}"></i>
+						<a href="{{ path('advert_admin_edit', {'id': advert.id}) }}"><i class="write icon blue large popin" data-title="Edition" data-content="Cliquez pour editer cette annonce"></i></a>
+					</div>
+				</td>
+				<td>{{ advert.title }}</td>
+				<td>{{ advert.description }}</td>
+				<td>{{ advert.price }}</td>
+			</tr>
+		  	{% endfor %}
+	</tbody>
+	<tfoot class="full-width">
+		<tr>
+			<th></th>
+			<th colspan="4">
+				<a href="{{ path('advert_admin_create') }}" href="./AddOrEdit.html">
+					<div class="ui right floated small primary labeled icon button popin"  data-title="Ajouter" data-content="Cliquez pour ajouter une nouvelle annonce">
+						<i class="user icon"></i> Add Advert
+					</div>
+				</a>
+			</th>
+		</tr>
+	</tfoot>
+	</table>
+	<div id="popUpDelete" class="ui basic modal">
+		<i class="close icon"></i>
+		<div class="header">
+			Suppression d'utilisateur
+		</div>
+		<div class="image content">
+			<div class="image">
+				<i class="archive icon"></i>
+			</div>
+			<div class="description">
+				<p>Voulez-vous vraiment supprimer cette annonce ?</p>
+			</div>
+		</div>
+		<div class="actions">
+			<div class="two fluid ui inverted buttons">
+				<div class="ui red basic inverted button" onclick="$('.ui.basic.modal').modal('hide');">
+					<i class="remove icon"></i>
+					Non
+				</div>
+				<div id="deleteAdvert" class="ui green basic inverted button">
+					<i class="checkmark icon"></i>
+					Oui
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.menu').find('.item').removeClass('active');
+	$('.menu').find('.menuAdmin').addClass('active');
+	$('.popin').popup();
+	var idadvert = 0;
+	$('.remove').click(function() {
+		$('#popUpDelete').modal('show');
+		idadvert = $(this).data("idadvert");
+	});
+
+	$('#deleteAdvert').click(function(){
+	    $.ajax({
+	        url: '{{ path('advert_admin_delete') }}',
+	        type: 'POST',
+	        dataType: 'json',
+	        data: {
+	        	'id': idadvert
+	        },
+	        success : function(code_html, statut){
+	        	window.location.href = '{{ path('advert_admin_index') }}';
+	       	},
+	       	error : function(resultat, statut, erreur){
+	       		alert("Une erreur est survenue !");
+	       	}
+	    });
+    });
+</script>
+{% endblock %}
