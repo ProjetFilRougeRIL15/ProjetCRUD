@@ -33,3 +33,7 @@ advert_admin_edit:
 config_admin_index:
   path: /config/index
   defaults: { _controller: UserAuthBundle:Config:index }
+
+config_admin_export:
+  path: /config/export
+  defaults: { _controller: UserAuthBundle:Config:export }

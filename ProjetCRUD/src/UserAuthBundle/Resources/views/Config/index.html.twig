@@ -26,8 +26,12 @@
                     <label>Mot de passe</label>
                     <input name="password" placeholder="Mot de passe" type="text" value="{{ datas['password'] }}">
                 </div>
-                <button class="ui button" type="submit">Submit</button>
+                <button class="positive ui button" type="submit">Submit</button>
+                <a style="float: right;" class="primary ui button" href="{{ path('config_admin_export') }}">Export</a>
+
             </form>
+
+
         </div>
         <div class="ui segment">
         </div>
