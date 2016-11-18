@@ -4,21 +4,31 @@ namespace UserAuthBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\HttpFoundation\Response;
 
 class ConfigController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $session = $request->getSession();
+        if($session->get('userRole') != 'admin')
+            return $this->render("UserAuthBundle:Error:503.html.twig");
+        if($request->isMethod("POST"))
+        {
+            $yaml = Yaml::parse(file_get_contents($this->container->get('kernel')->getRootDir() .'/config/parameters.yml'));
+
+            $yaml['parameters']['database_host'] = $request->get("host");
+            $yaml['parameters']['database_port'] = $request->get("port");
+            $yaml['parameters']['database_name'] = $request->get("name");
+            $yaml['parameters']['database_user'] = $request->get("user");
+            $yaml['parameters']['database_password'] = $request->get("password");
+
+            $new_yaml = Yaml::dump($yaml, 5);
+            file_put_contents($this->container->get('kernel')->getRootDir() .'/config/parameters.yml', $new_yaml);
+
+            return $this->render('UserAuthBundle:Home:index.html.twig');
+        }
         $datas = array();
 
         $datas['host'] = $this->container->getParameter('database_host');
@@ -32,6 +42,16 @@ class ConfigController extends Controller
                 'datas' => $datas
             )
         );
+    }
+
+    public function exportAction()
+    {
+        $yaml = file_get_contents($this->container->get('kernel')->getRootDir() .'/config/parameters.yml');
+
+        return new Response($yaml, 200, array(
+            'Content-Type' => 'application/x-yaml',
+            'Content-Disposition' => 'attachment; filename="parameters.yml"'
+        ));
     }
 }
 ?>

@@ -6,7 +6,11 @@
 				<img class="ui small image" alt="LogoLeBonCrud" src="{{ asset('UserAuthBundle/Semantic-UI/themes/default/assets/images/LogoLebonCRUDsmall.gif') }}">Le Bon CRUD
 			</h1>
 			<h2>Vendez et achetez ce que vous voulez quand vous voulez</h2>
+<<<<<<< HEAD
 			<div class="ui huge orange button">C'est par ici ! ps Le lien ne marche pas!<i class="right arrow icon"></i></div>
+=======
+			<div id="btnParICI" class="ui huge orange button">C'est par ici ! <i class="right arrow icon"></i></div>
+>>>>>>> 4a21250e3372f986d2d15046456cf7253ec8cd66
 		</div>
 	</div>
 	<div class="ui vertical stripe segment">
@@ -45,4 +49,11 @@
 			</div>
 		</div>
 	</div>
+{% endblock %}
+{% block scripts %}
+	<script>
+		$('#btnParICI').click(function () {
+			location.href = '{{ path('advert_admin_index') }}';
+		})
+	</script>
 {% endblock %}

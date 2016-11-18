@@ -4,7 +4,7 @@
         <div class="ui segment">
         </div>
         <div class="ui segment">
-            <form class="ui form">
+            <form method="post" class="ui form">
                 <div class="field">
                     <label>Adresse de la BDD</label>
                     <input name="host" placeholder="Adresse de la BDD" type="text" value="{{ datas['host'] }}">
@@ -16,7 +16,7 @@
 
                 <div class="field">
                     <label>Nom de la base de données</label>
-                    <input name="port" placeholder="Nom de la base de données" type="text" value="{{ datas['name'] }}">
+                    <input name="name" placeholder="Nom de la base de données" type="text" value="{{ datas['name'] }}">
                 </div>
                 <div class="field">
                     <label>Utilisateur BDD</label>
@@ -26,8 +26,12 @@
                     <label>Mot de passe</label>
                     <input name="password" placeholder="Mot de passe" type="text" value="{{ datas['password'] }}">
                 </div>
-                <button class="ui button" type="submit">Submit</button>
+                <button class="positive ui button" type="submit">Submit</button>
+                <a style="float: right;" class="primary ui button" href="{{ path('config_admin_export') }}">Export</a>
+
             </form>
+
+
         </div>
         <div class="ui segment">
         </div>

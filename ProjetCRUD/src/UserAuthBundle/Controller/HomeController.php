@@ -38,8 +38,6 @@ class HomeController extends Controller
     }
     public function loginAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
     	if($request->isXmlHttpRequest()) {
     		$email = $request->get('email');
     		$password = $request->get('password');
@@ -89,6 +87,7 @@ class HomeController extends Controller
 
 				$session = $request->getSession();
 				$session->set('user', $user->getId());
+                $session->set('userRole', $user->getRole());
     		}
 	    	return $this->render('UserAuthBundle:Home:index.html.twig');
     	}
