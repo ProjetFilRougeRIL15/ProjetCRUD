@@ -30,15 +30,21 @@ class AdvertController extends Controller
 
     public function deleteAction(Request $request)
     {
-        if($request->isXmlHttpRequest()) {
+        /*if($request->isXmlHttpRequest()) {
 
-			$em = $this->getDoctrine()->getManager();
-			$repository = $em->getRepository('UserAuthBundle:Advert');
-			$advert = $repository->find($request->get('id'));
-			$em->remove($advert);
-			$em->flush();
-			return new JsonResponse(array('id' => $request->get('id')));
-    	}
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UserAuthBundle:Advert');
+        $advert = $repository->find($request->get('id'));*/
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UserAuthBundle:Advert');
+        $advert = $repository->find($request->get("idAdvert"));
+
+        $em->remove($advert);
+        $em->flush();
+        //return new JsonResponse(array('id' => $request->get('id')));
+        return $this->redirectToRoute('advert_admin_index');
+    	//}
     }
 
     public function CreateOrEditAction($id = null, Request $request)
@@ -75,4 +81,6 @@ class AdvertController extends Controller
     	return $this->render('UserAuthBundle:Advert:CreateOrEdit.html.twig', array(
     		'form' => $form->createView() ));
     }
+
+
 }
