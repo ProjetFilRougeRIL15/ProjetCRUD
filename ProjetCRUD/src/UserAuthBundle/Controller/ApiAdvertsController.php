@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest; // alias pour toutes les annotations
 use FOS\RestBundle\View\ViewHandler;
 use FOS\RestBundle\View\View; // Utilisation de la vue de FOSRestBundle
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use UserAuthBundle\Entity\Advert;
 
 class ApiAdvertsController extends Controller
@@ -55,13 +56,6 @@ class ApiAdvertsController extends Controller
      */
     public function postAdvertAction(Request $request)
     {
-        /*return [
-            'adverts' => [
-                $request->get('title'),
-                $request->get('description')
-            ]
-        ];*/
-
         $advert = new Advert();
         $advert->setTitle($request->get('title'))
             ->setDescription($request->get('description'))
@@ -76,7 +70,7 @@ class ApiAdvertsController extends Controller
 
     /**
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
-     * @Rest\Delete("/adverts/{id}")
+     * @Rest\Delete("/advertsapi/{id}")
      */
     public function removeAdvertAction(Request $request)
     {
@@ -85,8 +79,41 @@ class ApiAdvertsController extends Controller
             ->find($request->get('id'));
         /* @var $place Place */
 
-        $em->remove($place);
-        $em->flush();
+        if($place) {
+            $em->remove($place);
+            $em->flush();
+        }
+    }
+
+    /**
+     * @Rest\View()
+     * @Rest\Put("/advertsapi/{id}")
+     */
+    public function updatePlaceAction(Request $request)
+    {
+        $advert = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('UserAuthBundle:Advert')
+            ->find($request->get('id')); // L'identifiant en tant que paramètre n'est plus nécessaire
+        /* @var $place Place */
+
+        if (empty($advert)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(FormType::class, $advert);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            // l'entité vient de la base, donc le merge n'est pas nécessaire.
+            // il est utilisé juste par soucis de clarté
+            $em->merge($advert);
+            $em->flush();
+            return $advert;
+        } else {
+            return $form;
+        }
     }
 }
 

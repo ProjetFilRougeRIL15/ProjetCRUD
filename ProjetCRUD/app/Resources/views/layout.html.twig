@@ -34,9 +34,11 @@
 					</div>#}
 					<div class="ui simple dropdown item">API <i class="dropdown icon"></i>
 						<div class="menu">
-							<a id="postAPIAdvert" class="item">Api POST</a>{#<div class="item">Choice 1</div>#}
-							<a id="getAllAPIAdvert" class="item">Api GET ALL</a>{#<div class="item">Choice 2</div>#}
-							<a id="getAPIAdvert" class="item">Api GET</a><!-- <div class="item">Choice 3</div> -->
+							<a id="postAPIAdvert" class="item">Api POST</a>
+							<a id="getAllAPIAdvert" class="item">Api GET ALL</a>
+							<a id="getAPIAdvert" class="item">Api GET</a>
+							<a id="deleteAPIAdvert" class="item">Api DELETE</a>
+							<a id="putAPIAdvert" class="item">Api PUT</a>
 						</div>
 					</div>
 				{% endif %}
@@ -186,6 +188,34 @@
 				dataType: 'json',
 				success: function(msg) {
 					alert(msg);
+				}
+			});
+		});
+		$('#deleteAPIAdvert').click(function() {
+
+			$.ajax({
+				url: '{{ path('remove_advert', {'id': 10}) }}',
+				type: 'DELETE',
+				success: function (result) {
+					// Do something with the result
+				}
+			});
+		});
+		$('#putAPIAdvert').click(function(){
+			/*var arr = {
+				id: 20,
+				title: "Titre API",
+				description: "Description API",
+				price:"123"
+			};*/
+			$.ajax({
+				url: '{{ path('remove_advert', {'id': 20}) }}',
+				type: 'PUT',
+				//data: JSON.stringify(arr),
+				//contentType: 'application/json; charset=utf-8',
+				//dataType: 'json',
+				success: function(response) {
+					//...
 				}
 			});
 		});

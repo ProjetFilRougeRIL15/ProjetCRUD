@@ -47,7 +47,7 @@ class AdvertController extends Controller
     	//}
     }
 
-    public function CreateOrEditAction($id = null, Request $request)
+    public function createOrEditAction($id = null, Request $request)
     {
     	$entityManager = $this->getDoctrine()->getManager();
 

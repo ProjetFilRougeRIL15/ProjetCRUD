@@ -24,11 +24,11 @@ advert_admin_delete:
 
 advert_admin_create:
     path: /advert/create/
-    defaults: { _controller: UserAuthBundle:Advert:CreateOrEdit }
+    defaults: { _controller: UserAuthBundle:Advert:createOrEdit }
 
 advert_admin_edit:
     path: /advert/edit/{id}
-    defaults: { _controller: UserAuthBundle:Advert:CreateOrEdit }
+    defaults: { _controller: UserAuthBundle:Advert:createOrEdit }
 
 config_admin_index:
   path: /config/index
