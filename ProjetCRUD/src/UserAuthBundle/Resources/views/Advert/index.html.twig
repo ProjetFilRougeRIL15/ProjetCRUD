@@ -53,14 +53,18 @@
 		</div>
 		<div class="actions">
 			<div class="two fluid ui inverted buttons">
-				<div class="ui red basic inverted button" onclick="$('.ui.basic.modal').modal('hide');">
-					<i class="remove icon"></i>
-					Non
-				</div>
-				<div id="deleteAdvert" class="ui green basic inverted button">
-					<i class="checkmark icon"></i>
-					Oui
-				</div>
+				<form id="deleteForm" action="{{ path('advert_admin_delete') }}">
+					<input id="hiddenDeleteInput" name="idAdvert" type="hidden" value="0">
+					<div class="ui red basic inverted button" onclick="$('.ui.basic.modal').modal('hide');">
+						<i class="remove icon"></i>
+						Non
+					</div>
+					{#<input type="submit" value="ok">#}
+					<div id="deleteAdvert" class="ui green basic inverted button" onClick="$('#deleteForm').submit();">
+						<i class="checkmark icon"></i>
+						Oui
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -70,26 +74,39 @@
 	$('.menu').find('.menuAdmin').addClass('active');
 	$('.popin').popup();
 	var idadvert = 0;
+
 	$('.remove').click(function() {
 		$('#popUpDelete').modal('show');
 		idadvert = $(this).data("idadvert");
+		$("#hiddenDeleteInput").val(idadvert);
 	});
 
-	$('#deleteAdvert').click(function(){
+	/*$('#deleteAdvert').click(function(){
 	    $.ajax({
-	        url: '{{ path('advert_admin_delete') }}',
-	        type: 'POST',
-	        dataType: 'json',
-	        data: {
-	        	'id': idadvert
-	        },
-	        success : function(code_html, statut){
-	        	window.location.href = '{{ path('advert_admin_index') }}';
-	       	},
-	       	error : function(resultat, statut, erreur){
-	       		alert("Une erreur est survenue !");
-	       	}
-	    });
-    });
+			url: '{{ path('advert_admin_delete') }}',
+			method: "post",
+			data: {id: idadvert}
+		}).done(function () {
+			window.location.href = '{{ path('advert_admin_index') }}';
+		});*/
+		/*$.ajax({
+			url: "/advert/delete",
+			type: 'POST',
+			data: idadvert,
+			processData: false,
+			contentType: false,
+			statusCode: {
+				//traitement en cas de succès
+				200: function(response) {
+					alert('ok');
+
+				},
+				//traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+				412: function(response) {
+					alert('putain !')
+				}
+			}
+		});*/
+    //});
 </script>
 {% endblock %}

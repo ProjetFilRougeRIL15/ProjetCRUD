@@ -37,3 +37,7 @@ config_admin_index:
 config_admin_export:
   path: /config/export
   defaults: { _controller: UserAuthBundle:Config:export }
+
+adverts_api:
+    type:     rest
+    resource: UserAuthBundle\Controller\ApiAdvertsController
