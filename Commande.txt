@@ -1,0 +1,18 @@
+Créer une Table : php bin/console doctrine:generate:entity
+Afficher le script SQL : php bin/console doctrine:schema:update --dump-sql
+Mettre à jour la table : php bin/console doctrine:schema:update --force
+Vider la cache : php bin/console cache:clear --env=prod
+
+-----------------------------------------------------------------------------
+Comande GIT ignore
+
+Pour supprimer .idea du rep de depot
+Création du fichier .gitignore ==> .idea/
+git rm -rf .idea 
+git commit -m "message"
+
+------------------------------------------------------------------------------
+Commande Composer
+
+Pour mettre à jour ces références composer:
+composer install
