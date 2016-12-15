@@ -73,6 +73,8 @@ class AdvertController extends Controller
     		$form->handleRequest($request);
     		if ($form->isValid()) 
     		{
+                $advert->setPrice(str_replace(',','.',$advert->getPrice()));
+                //number_format($number, 2, ',', ' ');
     			$entityManager->persist($advert);
     			$entityManager->flush();
     		}

@@ -20,12 +20,13 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-    	/*$serviceConnexion = $this->get('user_auth.UserAuthService');
+    	/*
+    	$serviceConnexion = $this->get('user_auth.UserAuthService');
     	if($serviceConnexion->isConnecter())
-    		throw new \Exception('Vous êtes connecté !');*/
+    		throw new \Exception('Vous êtes connecté !');
     	$entityManager = $this->getDoctrine()->getManager();
     	$userRepository = $entityManager->getRepository('UserAuthBundle:User');
-
+        */
         return $this->render('UserAuthBundle:Home:index.html.twig');
     }
 
